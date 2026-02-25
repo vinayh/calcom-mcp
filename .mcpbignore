@@ -1,0 +1,8 @@
+node_modules/
+src/
+*.ts
+tsconfig.json
+.git/
+.claude/
+.env
+.DS_Store

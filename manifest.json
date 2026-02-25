@@ -1,0 +1,93 @@
+{
+  "manifest_version": "0.4",
+  "name": "calcom-mcp",
+  "display_name": "Cal.com MCP",
+  "version": "0.2.0",
+  "description": "MCP server for interacting with the Cal.com API — manage bookings, event types, schedules, teams, users, and webhooks.",
+  "long_description": "A local MCP server that connects to the Cal.com API v2, enabling LLMs to manage your Cal.com scheduling data. Supports listing event types, creating and filtering bookings, viewing schedules, teams, users, and webhooks. Requires a Cal.com API v2 key.",
+  "author": {
+    "name": "Vinay Hiremath"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayh/calcom-mcp"
+  },
+  "server": {
+    "type": "npx",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "npx",
+      "args": ["-y", "calcom-mcp"],
+      "env": {
+        "CALCOM_API_KEY": "${user_config.api_key}"
+      }
+    }
+  },
+  "user_config": {
+    "api_key": {
+      "type": "string",
+      "title": "Cal.com API Key",
+      "description": "Your Cal.com API v2 key. Get it from Cal.com Settings > Developer > API Keys.",
+      "required": true,
+      "sensitive": true
+    }
+  },
+  "tools": [
+    {
+      "name": "get_api_status",
+      "description": "Check if the Cal.com API key is configured in the environment"
+    },
+    {
+      "name": "list_event_types",
+      "description": "Fetch a list of active (non-hidden) event types from Cal.com with simplified details"
+    },
+    {
+      "name": "get_bookings",
+      "description": "Fetch bookings from Cal.com with optional filters (event type, user, status, date range)"
+    },
+    {
+      "name": "create_booking",
+      "description": "Create a new booking in Cal.com for a specific event type and attendee"
+    },
+    {
+      "name": "list_schedules",
+      "description": "List all schedules available to the authenticated user or for a specific user/team"
+    },
+    {
+      "name": "list_teams",
+      "description": "List all teams available to the authenticated user"
+    },
+    {
+      "name": "list_users",
+      "description": "List all users available to the authenticated account"
+    },
+    {
+      "name": "list_webhooks",
+      "description": "List all webhooks configured for the authenticated account"
+    },
+    {
+      "name": "get_my_profile",
+      "description": "Get the profile of the currently authenticated Cal.com user"
+    },
+    {
+      "name": "update_my_profile",
+      "description": "Update the profile of the currently authenticated Cal.com user (name, email, timezone, bio, etc.)"
+    },
+    {
+      "name": "get_schedule",
+      "description": "Get a specific schedule by ID with availability and overrides"
+    },
+    {
+      "name": "update_schedule",
+      "description": "Update an existing schedule's name, timezone, availability blocks, or date overrides"
+    }
+  ],
+  "compatibility": {
+    "platforms": ["darwin", "linux", "win32"],
+    "runtimes": {
+      "node": ">=18"
+    }
+  },
+  "keywords": ["calcom", "calendar", "scheduling", "bookings", "events"]
+}
