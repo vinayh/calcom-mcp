@@ -1,5 +1,5 @@
 {
-  "manifest_version": "0.4",
+  "manifest_version": "0.3",
   "name": "calcom-mcp",
   "display_name": "Cal.com MCP",
   "version": "0.2.0",
@@ -14,11 +14,11 @@
     "url": "https://github.com/vinayh/calcom-mcp"
   },
   "server": {
-    "type": "npx",
+    "type": "node",
     "entry_point": "dist/index.js",
     "mcp_config": {
-      "command": "npx",
-      "args": ["-y", "calcom-mcp"],
+      "command": "node",
+      "args": ["${__dirname}/dist/index.js"],
       "env": {
         "CALCOM_API_KEY": "${user_config.api_key}"
       }
