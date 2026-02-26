@@ -6,6 +6,7 @@ export function registerStatusTools(server: McpServer) {
     "get_api_status",
     "Check if the Cal.com API key is configured in the environment",
     {},
+    { readOnlyHint: true, destructiveHint: false },
     async () => {
       const msg = isConfigured()
         ? "Cal.com API key is configured."

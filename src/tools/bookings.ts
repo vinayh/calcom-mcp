@@ -22,6 +22,7 @@ export function registerBookingTools(server: McpServer) {
       date_to: z.string().optional().describe("Filter to date (ISO 8601)"),
       limit: z.number().default(20).describe("Max results to return"),
     },
+    { readOnlyHint: true, destructiveHint: false },
     async ({ event_type_id, user_id, status, date_from, date_to, limit }) => {
       if (!isConfigured()) return notConfigured();
 
@@ -39,7 +40,7 @@ export function registerBookingTools(server: McpServer) {
 
   server.tool(
     "create_booking",
-    "Create a new booking in Cal.com for a specific event type and attendee",
+    "Create a new booking in Cal.com for a specific event type and attendee. This creates a real booking that notifies attendees.",
     {
       start_time: z.string().describe("Start time in ISO 8601 UTC (e.g., '2024-08-13T09:00:00Z')"),
       attendee_name: z.string().describe("Name of the primary attendee"),
@@ -58,6 +59,7 @@ export function registerBookingTools(server: McpServer) {
       length_in_minutes: z.number().optional().describe("Duration if event type allows variable lengths"),
       booking_fields_responses: z.record(z.unknown()).optional().describe("Custom booking field responses"),
     },
+    { readOnlyHint: false, destructiveHint: false },
     async (args) => {
       if (!isConfigured()) return notConfigured();
 

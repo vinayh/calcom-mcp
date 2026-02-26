@@ -19,6 +19,7 @@ export function registerScheduleTools(server: McpServer) {
       team_id: z.number().optional().describe("Filter by team ID"),
       limit: z.number().default(20).describe("Max results to return"),
     },
+    { readOnlyHint: true, destructiveHint: false },
     async ({ user_id, team_id, limit }) => {
       if (!isConfigured()) return notConfigured();
 
@@ -36,6 +37,7 @@ export function registerScheduleTools(server: McpServer) {
     {
       schedule_id: z.number().describe("The ID of the schedule to retrieve"),
     },
+    { readOnlyHint: true, destructiveHint: false },
     async ({ schedule_id }) => {
       if (!isConfigured()) return notConfigured();
       return text(await calGet(`/schedules/${schedule_id}`, undefined, "2024-06-11"));
@@ -71,6 +73,7 @@ export function registerScheduleTools(server: McpServer) {
         .optional()
         .describe("Date-specific overrides"),
     },
+    { readOnlyHint: false, destructiveHint: true },
     async ({ schedule_id, name, time_zone, is_default, availability, overrides }) => {
       if (!isConfigured()) return notConfigured();
 

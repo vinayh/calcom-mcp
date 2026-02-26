@@ -60,6 +60,7 @@ export function registerEventTypeTools(server: McpServer) {
     "list_event_types",
     "Fetch a list of active (non-hidden) event types from Cal.com with simplified details",
     {},
+    { readOnlyHint: true, destructiveHint: false },
     async () => {
       if (!isConfigured()) {
         return { content: [{ type: "text", text: JSON.stringify({ error: "Cal.com API key not configured." }) }] };

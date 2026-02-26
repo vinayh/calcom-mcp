@@ -15,6 +15,7 @@ export function registerProfileTools(server: McpServer) {
     "get_my_profile",
     "Get the profile of the currently authenticated Cal.com user",
     {},
+    { readOnlyHint: true, destructiveHint: false },
     async () => {
       if (!isConfigured()) return notConfigured();
       return text(await calGet("/me"));
@@ -36,6 +37,7 @@ export function registerProfileTools(server: McpServer) {
       bio: z.string().optional().describe("User biography"),
       metadata: z.record(z.unknown()).optional().describe("Custom key-value metadata"),
     },
+    { readOnlyHint: false, destructiveHint: true },
     async ({ email, name, time_format, default_schedule_id, week_start, time_zone, locale, avatar_url, bio, metadata }) => {
       if (!isConfigured()) return notConfigured();
 

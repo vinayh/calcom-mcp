@@ -13,6 +13,7 @@ export function registerTeamTools(server: McpServer) {
     {
       limit: z.number().default(20).describe("Max results to return"),
     },
+    { readOnlyHint: true, destructiveHint: false },
     async ({ limit }) => {
       if (!isConfigured()) return text({ error: "Cal.com API key not configured." });
       return text(await calGet("/teams", { take: String(limit) }));

@@ -89,5 +89,6 @@
       "node": ">=18"
     }
   },
-  "keywords": ["calcom", "calendar", "scheduling", "bookings", "events"]
+  "keywords": ["calcom", "calendar", "scheduling", "bookings", "events"],
+  "privacy_policies": ["https://github.com/vinayh/calcom-mcp#privacy-policy"]
 }
